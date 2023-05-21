@@ -11,6 +11,41 @@ class ExpressionConverter:
     }
 
     @staticmethod
+    def normalize_infix_expression(expression: str) -> str:
+        """
+        Метод, который учитывает отрицательные значения и приводит инфиксную
+        запись выражения к виду пригодному для перевода в постфиксную запись
+        :param expression(str): Выражение
+        :return:
+                result(str): Нормализованное выражение
+        """
+        if expression[0] == "-":
+            expression = "0" + expression
+        if "(-" in expression:
+            expression = expression.replace("(-", "(0-")
+        """temp_str = ""
+        if "(-" in expression:
+            for symbol in expression:
+                if symbol == "(" and not temp_str:
+                    temp_str += symbol
+                elif symbol == "-" and temp_str == "(":
+                    temp_str += symbol
+                elif symbol != "-" and temp_str == "(":
+                    result += temp_str + symbol
+                    temp_str = ""
+                elif symbol.isalnum() and temp_str:
+                    temp_str += symbol
+                elif symbol == ")" and temp_str:
+                    result += temp_str.replace("(", "(0") + symbol
+                    temp_str = ""
+                else:
+                    result += symbol"""
+        return expression
+
+
+
+
+    @staticmethod
     def __convert_expression_to_list(expression: str) -> list:
         """
         Конвертирует выражание из строки в список из чисел и знаков операций
@@ -23,8 +58,6 @@ class ExpressionConverter:
         for index, symbol in enumerate(expression):
             if symbol.isalnum():
                 temp_str += symbol
-            elif symbol == " ":
-                continue
             else:
                 if temp_str:
                     result.append(int(temp_str))
