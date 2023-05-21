@@ -8,7 +8,7 @@ class StringStack:
         if not isinstance(value, int):
             raise TypeError(f"Недопустимый тип данных '{value.__class__.__name__}', ожидался 'int'")
         if value < 1:
-            raise ValueError(f"Максимальный размер стака не может быть меньше '1'")
+            raise ValueError(f"Максимальный размер стэка не может быть меньше '1'")
         return value
 
     def __item_validator(self, item):
@@ -21,7 +21,7 @@ class StringStack:
 
     def pop(self):
         if self.is_empty():
-            raise Exception(f"Невозможно извлеч элемент. Стэк пуст")
+            raise Exception(f"Невозможно извлечь элемент. Стэк пуст")
         return self.__data.pop()
 
     def peek(self):

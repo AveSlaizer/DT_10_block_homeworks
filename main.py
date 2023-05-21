@@ -12,10 +12,11 @@
 При старте приложения нужно отобразить меню с помощью, которого
 пользователь может выбрать необходимую операцию.
 """
+from stackgui import StackInitGUI
 
 
 def execute_application():
-    pass
+    gui = StackInitGUI()
 
 
 if __name__ == "__main__":
