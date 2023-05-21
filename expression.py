@@ -11,7 +11,7 @@ class ExpressionConverter:
     }
 
     @staticmethod
-    def normalize_infix_expression(expression: str) -> str:
+    def __normalize_infix_expression(expression: str) -> str:
         """
         Метод, который учитывает отрицательные значения и приводит инфиксную
         запись выражения к виду пригодному для перевода в постфиксную запись
@@ -23,27 +23,7 @@ class ExpressionConverter:
             expression = "0" + expression
         if "(-" in expression:
             expression = expression.replace("(-", "(0-")
-        """temp_str = ""
-        if "(-" in expression:
-            for symbol in expression:
-                if symbol == "(" and not temp_str:
-                    temp_str += symbol
-                elif symbol == "-" and temp_str == "(":
-                    temp_str += symbol
-                elif symbol != "-" and temp_str == "(":
-                    result += temp_str + symbol
-                    temp_str = ""
-                elif symbol.isalnum() and temp_str:
-                    temp_str += symbol
-                elif symbol == ")" and temp_str:
-                    result += temp_str.replace("(", "(0") + symbol
-                    temp_str = ""
-                else:
-                    result += symbol"""
         return expression
-
-
-
 
     @staticmethod
     def __convert_expression_to_list(expression: str) -> list:
@@ -78,6 +58,7 @@ class ExpressionConverter:
         """
         stack = Stack()
         postfix = []
+        expression = ExpressionConverter.__normalize_infix_expression(expression)
         infix = ExpressionConverter.__convert_expression_to_list(expression)
 
         for item in infix:
