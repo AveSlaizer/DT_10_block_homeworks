@@ -1,1 +1,1 @@
-from . import stack
+from . import stack, stringstack
