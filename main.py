@@ -3,6 +3,7 @@
 Перевести выражение из инфиксной формы в постфиксную форму
 записи.
 """
+from expression import ExpressionConverter
 
 
 def execute_application():
