@@ -106,6 +106,7 @@ class Expression:
             '(': ')'
         }
         s = Stack()
+
         for symbol in expression:
             if symbol in brackets.keys():
                 s.push(symbol)
@@ -115,7 +116,6 @@ class Expression:
                 raise Exception("В выражении не верно расставлены скобки")
             else:
                 continue
-                #raise Exception("В выражении не верно расставлены скобки")
 
         if s.is_empty():
             return expression
