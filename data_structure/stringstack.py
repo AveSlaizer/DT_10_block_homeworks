@@ -11,14 +11,13 @@ class StringStack:
             raise ValueError(f"Максимальный размер стака не может быть меньше '1'")
         return value
 
-    @staticmethod
-    def __item_validator(item):
+    def __item_validator(self, item):
         if not isinstance(item, str):
             raise TypeError(f"Недопустимый тип данных '{item.__class__.__name__}', ожидался 'str'")
         return item
 
     def push(self, item):
-        self.__data.append(StringStack.__item_validator(item))
+        self.__data.append(self.__item_validator(item))
 
     def pop(self):
         if self.is_empty():
