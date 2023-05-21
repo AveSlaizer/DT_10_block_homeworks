@@ -58,6 +58,7 @@ class ExpressionConverter:
         """
         stack = Stack()
         postfix = []
+        expression = expression.replace(" ", "")
         expression = ExpressionConverter.__normalize_infix_expression(expression)
         infix = ExpressionConverter.__convert_expression_to_list(expression)
 
@@ -83,7 +84,7 @@ class ExpressionConverter:
 class Expression:
 
     def __init__(self, expression: str):
-        self.__infix_expression = expression
+        self.__infix_expression = self.__brackets_validator(expression)
         self.__postfix_expression = ExpressionConverter.to_postfix(expression)
 
     @property
@@ -93,6 +94,32 @@ class Expression:
     @property
     def postfix_expression(self):
         return self.__postfix_expression
+
+    def __brackets_validator(self, expression):
+        """
+        Проверяет, правильно ли расставлены скобки
+        внутри инфиксной записи арифметического выражения
+        :return:
+                bool
+        """
+        brackets = {
+            '(': ')'
+        }
+        s = Stack()
+        for symbol in expression:
+            if symbol in brackets.keys():
+                s.push(symbol)
+            elif not s.is_empty() and symbol == brackets[s.peek()]:
+                s.pop()
+            elif symbol in brackets.values():
+                raise Exception("В выражении не верно расставлены скобки")
+            else:
+                continue
+                #raise Exception("В выражении не верно расставлены скобки")
+
+        if s.is_empty():
+            return expression
+        raise Exception("В выражении не верно расставлены скобки")
 
     def get_expression_value(self):
         """
