@@ -3,11 +3,12 @@
 Перевести выражение из инфиксной формы в постфиксную форму
 записи.
 """
-from expression import ExpressionConverter
+from expression import Expression
 
 
 def execute_application():
-    pass
+    expression = "5*6+(2-9)"
+    print(Expression(expression).postfix_expression)
 
 
 if __name__ == "__main__":
