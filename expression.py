@@ -1,4 +1,5 @@
 from data_structure.stack import Stack
+from typing import Union
 
 
 class ExpressionConverter:
@@ -121,9 +122,33 @@ class Expression:
             return expression
         raise Exception("В выражении не верно расставлены скобки")
 
-    def get_expression_value(self):
+    def get_expression_value(self) -> Union[int, float]:
         """
         Возвращает значение выражения, записанного в постфиксной форме в поле __postfix_expression
         :return:
+                result(Union[int, float]): Результат вычисления
         """
-        pass
+        stack = Stack()
+        for item in self.__postfix_expression:
+            if isinstance(item, int):
+                stack.push(item)
+            if isinstance(item, str):
+                second_num = stack.pop()
+                first_num = stack.pop()
+                if item == "+":
+                    temp_num = first_num + second_num
+                elif item == "-":
+                    temp_num = first_num - second_num
+                elif item == "*":
+                    temp_num = first_num * second_num
+                else:
+                    if second_num:
+                        temp_num = first_num / second_num
+                    else:
+                        raise ZeroDivisionError
+                stack.push(temp_num)
+
+        result = stack.pop()
+        if stack.is_empty():
+            return result
+        raise Exception("Ошибка вычисления")
