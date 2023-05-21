@@ -17,6 +17,8 @@ class StringStack:
         return item
 
     def push(self, item):
+        if len(self.__data) >= self.__lenght:
+            raise Exception("Невозможно добавить элемент! Превышен максимальный размер стэка!")
         self.__data.append(self.__item_validator(item))
 
     def pop(self):
@@ -26,7 +28,7 @@ class StringStack:
 
     def peek(self):
         if self.is_empty():
-            raise Exception(f"Невозможно прочитать элемент. Стэк пуст")
+            return "None"
         return self.__data[-1]
 
     def __len__(self):

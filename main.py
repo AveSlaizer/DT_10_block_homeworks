@@ -16,7 +16,7 @@ from stackgui import StackInitGUI
 
 
 def execute_application():
-    gui = StackInitGUI()
+    StackInitGUI()
 
 
 if __name__ == "__main__":
