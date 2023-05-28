@@ -16,7 +16,7 @@ class VisitorPriorityQueue:
         """ добавление элемента c приоритетом в очередь """
         if not isinstance(item, Visitor):
             raise TypeError(f"Недопустимый тип данных '{item.__class__.__name__}', ожидался 'User'")
-        self.__queue.append(item)
+        self.__queue.insert(0, item)
         self.__queue.sort()
 
     def peek(self):
@@ -25,9 +25,12 @@ class VisitorPriorityQueue:
 
     def pull_highest_priority_element(self):
         """ удаление элемента c высшим приоритетом из очереди """
-        return self.__queue.pop().__name
+        return self.__queue.pop().name
 
     def show(self):
         """ отображение всех элементов очереди на экран """
         for visitor in self.__queue:
             print(visitor)
+
+    def __len__(self):
+        return len(self.__queue)
