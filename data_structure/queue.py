@@ -41,7 +41,6 @@ class UsersQueue(Queue):
         self.__length = length
         self._data = LinkedList()
 
-
     def enqueue(self, item: User):
         if not isinstance(item, User):
             raise TypeError(f"Недопустимый тип данных '{item.__class__.__name__}', ожидался 'User'")
@@ -51,9 +50,16 @@ class UsersQueue(Queue):
             raise IndexError(f"Невозможно добавить пользователя в очередь. Очередь заполнена.")
 
     def dequeue(self):
-        if not len(self._data):
+        if self.is_empty():
             raise IndexError(f"Невозможно удалить пользователя из очереди. Очередь пуста.")
         return self._data.remove_first()
+
+    def peek(self):
+        if self.is_empty():
+            raise IndexError(f"Невозможно прочитать информацию о пользователе. Очередь пуста")
+        item = self._data.remove_first()
+        self._data.add_first(item)
+        return item
 
     def info(self):
         for item in self._data.items():
