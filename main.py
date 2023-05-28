@@ -42,12 +42,19 @@ def execute_application():
         show_menu()
         main_action = input(" >>> ")
         if main_action == "1":
-            user = User(
-                input("Введите логин пользователя: "),
-                input("Введите пароль пользователя: ")
-            )
-            user_queue.enqueue(user)
-            print(f"Пользователь {user} добавлен в очередь")
+            try:
+                assert len(user_queue) < queue_lenght, "Невозможно добавить пользователя в очередь. Очередь заполнена."
+                user = User(
+                    input("Введите логин пользователя: "),
+                    input("Введите пароль пользователя: ")
+                )
+
+                user_queue.enqueue(user)
+                print(f"Пользователь {user} добавлен в очередь")
+            except IndexError as e:
+                print(e)
+            except AssertionError as e:
+                print(e)
         elif main_action == "2":
             try:
                 temp_user = user_queue.dequeue()
