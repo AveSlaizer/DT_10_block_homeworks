@@ -12,10 +12,19 @@
 При старте приложения нужно отобразить меню с помощью, которого
 пользователь может выбрать необходимую операцию.
 """
+from data_structure.queue import UsersQueue
+from user import User
 
 
 def execute_application():
-    pass
+    user = User("slava", "123")
+    uqueue = UsersQueue(2)
+    uqueue.enqueue(user)
+    uqueue.enqueue(user)
+    uqueue.info()
+    uqueue.dequeue()
+    uqueue.dequeue()
+    uqueue.info()
 
 
 if __name__ == "__main__":
