@@ -1,4 +1,20 @@
-from task import Task
+class Task:
+    def __init__(self, description: str, priority: int):
+        self.__description = description
+        self.__priority = priority
+
+    @property
+    def description(self):
+        return self.__description
+
+    @property
+    def priority(self):
+        return self.__priority
+
+    @priority.setter
+    def priority(self, priority: int):
+        self.__priority = priority
+
 
 
 class PriorityQueue:
@@ -16,8 +32,8 @@ class PriorityQueue:
             return self.__queue[-1]
         raise IndexError("Нет активных задач")
 
-    def insert(self, description: str, priority: int):
-        self.__queue.insert(0, Task(description, priority))
+    def insert(self, task: Task):
+        self.__queue.insert(0, task)
         self.__queue.sort()
 
     def delete(self):

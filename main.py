@@ -9,10 +9,11 @@
     - Выполнить текущую задачу
     - Изменить приоритет задачи
 """
+from gui.mainwindow import MainWindow
 
 
 def execute_application():
-    pass
+    MainWindow()
 
 
 if __name__ == "__main__":
