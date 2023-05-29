@@ -51,8 +51,10 @@ class MainWindow:
         self.change_window = tkinter.Tk()
         self.change_window.title("Change priority")
 
-        self.priority_change_spinbox = tkinter.Spinbox(self.change_window, from_=1, to=10, font=("Arial", 16))
-        self.priority_change_spinbox.grid(row=0, columnspan=2, pady=4, padx=4)
+        self.change_priority_label= tkinter.Label(self.change_window, text="Приоритет: ", font=("Arial", 16))
+        self.change_priority_label.grid(row=0, column=0, pady=4, padx=4)
+        self.priority_change_spinbox = tkinter.Spinbox(self.change_window, from_=1, to=10, font=("Arial", 16), width=10)
+        self.priority_change_spinbox.grid(row=0, column=1, pady=4, padx=4)
 
         self.ok_btn = tkinter.Button(self.change_window, text="OK", font=("Arial", 16), width=10,
                                      command=self.__change_priority)
@@ -75,8 +77,11 @@ class MainWindow:
         self.description_entry = tkinter.Text(self.add_window, font=("Arial", 16), wrap="word", width=28, height=5)
         self.description_entry.grid(row=0, columnspan=2, pady=4, padx=4)
 
-        self.priority_add_spinbox = tkinter.Spinbox(self.add_window, from_=1, to=10, font=("Arial", 16))
-        self.priority_add_spinbox.grid(row=1, columnspan=2, pady=4, padx=4)
+        self.add_priority_label = tkinter.Label(self.add_window, text="Приоритет: ", font=("Arial", 16))
+        self.add_priority_label.grid(row=1, column=0, pady=4, padx=4)
+
+        self.priority_add_spinbox = tkinter.Spinbox(self.add_window, from_=1, to=10, font=("Arial", 16), width=10)
+        self.priority_add_spinbox.grid(row=1, column=1, pady=4, padx=4)
 
         self.task_add_btn = tkinter.Button(self.add_window, text="Добавить", font=("Arial", 16), width=10,
                                            command=self.__add_new_task)
@@ -98,8 +103,9 @@ class MainWindow:
 
     def __add_new_task(self):
         description = self.description_entry.get(1.0, tkinter.END)
+        print(description, bool(description))
         priority = int(self.priority_add_spinbox.get())
-        if not description:
+        if description == "\n":
             tkinter.messagebox.showwarning("Warning", "Задание должно иметь описание!")
         else:
             task = Task(description, priority)
