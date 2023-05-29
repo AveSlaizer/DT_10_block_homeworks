@@ -30,7 +30,8 @@ class PriorityQueue:
     def peek(self):
         if not self.is_empty():
             return self.__queue[-1]
-        raise IndexError("Нет активных задач")
+        return "Нет активных задач"
+        #raise IndexError("Нет активных задач")
 
     def insert(self, task: Task):
         self.__queue.insert(0, task)
