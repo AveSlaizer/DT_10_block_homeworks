@@ -103,7 +103,6 @@ class MainWindow:
 
     def __add_new_task(self):
         description = self.description_entry.get(1.0, tkinter.END)
-        print(description, bool(description))
         priority = int(self.priority_add_spinbox.get())
         if description == "\n":
             tkinter.messagebox.showwarning("Warning", "Задание должно иметь описание!")

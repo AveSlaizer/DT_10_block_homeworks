@@ -16,7 +16,7 @@ class Task:
         self.__priority = priority
 
     def __str__(self):
-        return f"Приоритет: {self.priority}. Описание:\n{self.description}"
+        return f"<Приоритет: {self.priority}. Описание: {self.description}>"
 
     def __lt__(self, other):
         if not isinstance(other, Task):
