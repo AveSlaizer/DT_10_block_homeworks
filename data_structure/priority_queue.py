@@ -15,6 +15,19 @@ class Task:
     def priority(self, priority: int):
         self.__priority = priority
 
+    def __str__(self):
+        return f"Приоритет: {self.priority}. Описание:\n{self.description}"
+
+    def __lt__(self, other):
+        if not isinstance(other, Task):
+            raise TypeError(f"Недопустимый тип данных '{other.__class__.__name__}', ожидался 'Task'")
+        return self.priority < other.priority
+
+    def __gt__(self, other):
+        if not isinstance(other, Task):
+            raise TypeError(f"Недопустимый тип данных '{other.__class__.__name__}', ожидался 'Task'")
+        return self.priority > other.priority
+
 
 
 class PriorityQueue:
@@ -30,8 +43,8 @@ class PriorityQueue:
     def peek(self):
         if not self.is_empty():
             return self.__queue[-1]
-        return "Нет активных задач"
-        #raise IndexError("Нет активных задач")
+        raise IndexError("Отсутствует актуальная задача")
+
 
     def insert(self, task: Task):
         self.__queue.insert(0, task)
@@ -43,7 +56,7 @@ class PriorityQueue:
         raise IndexError("Отсутствует актуальная задача")
 
     def change_actual_task_priority(self, priority: int):
-        if not self.is_empty():
-            self.__queue[-1].priority = priority
-            self.__queue.sort()
-        raise IndexError("Отсутствует актуальная задача")
+        if self.is_empty():
+            raise IndexError("Отсутствует актуальная задача")
+        self.__queue[-1].priority = priority
+        self.__queue.sort()
