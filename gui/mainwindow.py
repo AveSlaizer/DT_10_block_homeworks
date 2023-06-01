@@ -24,7 +24,6 @@ class MainWindow:
                                         width=40, height=10, borderwidth=3, relief="ridge", justify="left")
         self.task_label.grid(row=0, columnspan=2, sticky="wens", pady=4, padx=4)
 
-
         self.change_btn = tkinter.Button(self.main_window, text="Изменить", font=("Arial", 16),
                                          command=self.__change_actual_task_priority, state=tkinter.DISABLED)
         self.change_btn.grid(row=1, column=0, sticky="we", pady=8, padx=4)
@@ -51,7 +50,7 @@ class MainWindow:
         self.change_window = tkinter.Tk()
         self.change_window.title("Change priority")
 
-        self.change_priority_label= tkinter.Label(self.change_window, text="Приоритет: ", font=("Arial", 16))
+        self.change_priority_label = tkinter.Label(self.change_window, text="Приоритет: ", font=("Arial", 16))
         self.change_priority_label.grid(row=0, column=0, pady=4, padx=4)
         self.priority_change_spinbox = tkinter.Spinbox(self.change_window, from_=1, to=10, font=("Arial", 16), width=10)
         self.priority_change_spinbox.grid(row=0, column=1, pady=4, padx=4)
@@ -71,7 +70,6 @@ class MainWindow:
         self.add_window = tkinter.Tk()
         self.add_window.title("Add new task")
 
-
         self.description = tkinter.StringVar()
 
         self.description_entry = tkinter.Text(self.add_window, font=("Arial", 16), wrap="word", width=28, height=5)
@@ -88,7 +86,7 @@ class MainWindow:
         self.task_add_btn.grid(row=2, column=0, pady=4, padx=4)
 
         self.cancel_add_btn = tkinter.Button(self.add_window, text="Отмена", font=("Arial", 16), width=10,
-                                                command=self.__destroy_add_window)
+                                             command=self.__destroy_add_window)
         self.cancel_add_btn.grid(row=2, column=1, pady=4, padx=4)
 
         tkinter.mainloop()
@@ -145,8 +143,3 @@ class MainWindow:
                 text = text[:index] + "\n" + text[index:]
             index += 1
         return text
-
-
-
-
-

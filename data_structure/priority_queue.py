@@ -29,7 +29,6 @@ class Task:
         return self.priority > other.priority
 
 
-
 class PriorityQueue:
     def __init__(self):
         self.__queue = []
@@ -44,7 +43,6 @@ class PriorityQueue:
         if not self.is_empty():
             return self.__queue[-1]
         raise IndexError("Отсутствует актуальная задача")
-
 
     def insert(self, task: Task):
         self.__queue.insert(0, task)
