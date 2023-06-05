@@ -14,7 +14,6 @@ FordCoupe». Таким образом, в вашем абстрактном к�
 from abc import ABC, abstractmethod
 
 
-
 class Car(ABC):
     pass
 
@@ -22,8 +21,10 @@ class Car(ABC):
 class Sedan(Car):
     pass
 
+
 class ToyotaSedan(Sedan):
     pass
+
 
 class FordSedan(Sedan):
     pass
@@ -32,8 +33,10 @@ class FordSedan(Sedan):
 class Coupe(Car):
     pass
 
+
 class ToyotaCoupe(Coupe):
     pass
+
 
 class FordCoupe(Coupe):
     pass
@@ -69,7 +72,6 @@ class FordCarFactory(CarFactory):
 
 
 def execute_application():
-
     toyota = ToyotaCarFactory()
     toyota_sedan = toyota.create_sedan()
     print(toyota_sedan)
