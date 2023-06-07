@@ -42,7 +42,9 @@ class CardReader(USB):
 
 
 def execute_application():
-    pass
+    card = MemoryCard()
+    reader = CardReader(card)
+    reader.connect_with_usb_cable()
 
 
 if __name__ == "__main__":
