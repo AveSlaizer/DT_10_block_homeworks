@@ -51,7 +51,7 @@ class SecurityDoor(Door):
     def __init__(self, door: Door):
         self.__door = door
 
-    def authentication(self, password: str):
+    def __authentication(self, password: str):
         if password != self.__password:
             raise WrongPassword("Не правильный пароль!")
 
@@ -59,16 +59,20 @@ class SecurityDoor(Door):
         self.__password = new_password
 
     def open(self, password: str):
-        self.authentication(password)
+        self.__authentication(password)
         self.__door.open()
 
     def close(self):
         self.__door.close()
 
 
-
 def execute_application():
-    pass
+    password = "1234"
+    door = SecurityDoor(LaboratoryDoor())
+    door.open(password)
+    door.set_password("1231")
+    door.open(password)
+
 
 
 if __name__ == "__main__":
