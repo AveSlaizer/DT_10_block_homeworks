@@ -1,4 +1,4 @@
-from time import time
+import time
 """
 Задание 1.
 Создайте функцию, возвращающую список со всеми простыми числами
@@ -30,9 +30,9 @@ def is_easy_number(number: int) -> bool:
 
 def timer(func):
     def wrapper(*args, **kwargs):
-        start = time()
+        start = time.time()
         result = func(*args, **kwargs)
-        stop = time()
+        stop = time.time()
         print(f"Функция отработала за '{stop - start:.4f}' секунд")
         return result
     return wrapper
@@ -50,6 +50,22 @@ def make_easy_number_list(begin: int = 0, end: int = 1000) -> list[int]:
     return [i for i in range(begin, end + 1) if is_easy_number(i)]
 
 
+"""
+Задание 3.
+Создайте функцию для отображения текущего времени. Функция не
+принимает параметров.
+"""
+
+def get_local() -> str:
+    """
+    Возвращает строку с локальным временем в формате hh:mm
+
+    :return:
+            (str): Локальное время
+    """
+    return time.strftime("%H:%M", time.localtime())
+
+
 def execute_application():
     """
     # Задание 1
@@ -60,6 +76,8 @@ def execute_application():
     print(f"Простые числа от 1 до 1000: {make_easy_number_list(1, 15)}")
     """
 
+    # Задание 3
+    print(get_local())
 
 
 if __name__ == "__main__":
