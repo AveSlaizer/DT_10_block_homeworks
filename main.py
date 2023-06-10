@@ -20,10 +20,15 @@
 from abc import ABC, abstractmethod
 
 
+class WrongPassword(Exception):
+    def __init__(self, text):
+        self.text = text
+
+
 class Door(ABC):
 
     @abstractmethod
-    def open(self):
+    def open(self, *args):
         raise NotImplementedError
 
     @abstractmethod
@@ -38,6 +43,28 @@ class LaboratoryDoor(Door):
 
     def close(self):
         print("Дверь лаборатории закрыта")
+
+
+class SecurityDoor(Door):
+    __password = "1234"
+
+    def __init__(self, door: Door):
+        self.__door = door
+
+    def authentication(self, password: str):
+        if password != self.__password:
+            raise WrongPassword("Не правильный пароль!")
+
+    def set_password(self, new_password: str):
+        self.__password = new_password
+
+    def open(self, password: str):
+        self.authentication(password)
+        self.__door.open()
+
+    def close(self):
+        self.__door.close()
+
 
 
 def execute_application():
