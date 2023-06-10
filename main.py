@@ -1,3 +1,4 @@
+from time import time
 """
 Задание 1.
 Создайте функцию, возвращающую список со всеми простыми числами
@@ -21,9 +22,34 @@ def is_easy_number(number: int) -> bool:
     return True
 
 
-def execute_application():
-    pass
 
+def timer(func):
+    def wrapper(*args, **kwargs):
+        start = time()
+        result = func(*args, **kwargs)
+        stop = time()
+        print(f"Функция отработала за '{stop - start:.4f}' секунд")
+        return result
+    return wrapper
+
+@timer
+def make_easy_number_list(begin: int = 0, end: int = 1000) -> list[int]:
+    """
+    Возвращает список простых чисел из диапазона от begin до end
+
+    :param begin(int): Начало диапазона
+    :param end(int): Конец диапазона
+    :return:
+            (list[int]): Список простых чисел
+    """
+    return [i for i in range(begin, end + 1) if is_easy_number(i)]
+
+
+def execute_application():
+    """
+    # Задание 1
+    print(f"Простые числа от 1 до 1000: {make_easy_number_list()}")
+    """
 
 if __name__ == "__main__":
     execute_application()
