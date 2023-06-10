@@ -55,15 +55,30 @@ def make_easy_number_list(begin: int = 0, end: int = 1000) -> list[int]:
 Создайте функцию для отображения текущего времени. Функция не
 принимает параметров.
 """
+"""
+Задание 4.
+Используя синтаксис декораторов, произведите декорирование
+функции из задания 3. Потенциальный вывод данных на экран после
+декорирования:
+***************************
+23:00
+***************************
+"""
 
-def get_local() -> str:
-    """
-    Возвращает строку с локальным временем в формате hh:mm
+def star_decorator(func):
+    def wrapper(*args, **kwargs):
+        print("***************************")
+        func(*args, **kwargs)
+        print("***************************")
+        return
+    return wrapper
 
-    :return:
-            (str): Локальное время
+@star_decorator
+def get_local():
     """
-    return time.strftime("%H:%M", time.localtime())
+    Выводит в консоль локальное время в формате hh:mm
+    """
+    print(time.strftime("%H:%M", time.localtime()))
 
 
 def execute_application():
@@ -75,9 +90,14 @@ def execute_application():
     # Задание 2
     print(f"Простые числа от 1 до 1000: {make_easy_number_list(1, 15)}")
     """
-
+    """
     # Задание 3
-    print(get_local())
+    get_local()
+    """
+    """
+    # Задание 4
+    get_local()
+    """
 
 
 if __name__ == "__main__":
